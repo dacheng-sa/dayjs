@@ -1,0 +1,407 @@
+{
+  "reported": {
+    "1271": {
+      "hostTz": "America/Santiago",
+      "now": "2020-12-20T15:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2020-10-24', 'Europe/London').add(2, 'day').toISOString()",
+          "dayjs": "2020-10-25T23:00:00.000Z",
+          "expected": "2020-10-26T00:00:00.000Z",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2020-10-24', 'Europe/London').add(2, 'day').format()",
+          "dayjs": "2020-10-26T00:00:00+01:00",
+          "expected": "2020-10-26T00:00:00Z",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2020-10-25', 'Europe/Berlin').add(1, 'day')\n  .diff(dayjs.tz('2020-10-26', 'Europe/Berlin'))",
+          "dayjs": "-3600000",
+          "expected": "0",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2021-03-12 19:00', 'America/New_York').add(1, 'month').format()",
+          "dayjs": "2021-04-12T19:00:00-05:00",
+          "expected": "2021-04-12T19:00:00-04:00",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2020-10-25 00:00', 'Europe/London').add(3, 'hour').format()",
+          "dayjs": "2020-10-25T03:00:00+01:00",
+          "expected": "2020-10-25T02:00:00Z",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "2609": {
+      "hostTz": "America/New_York",
+      "now": "2024-03-15T15:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2024-03-10', 'America/Los_Angeles').format()",
+          "dayjs": "2024-03-09T23:00:00-08:00",
+          "expected": "2024-03-10T00:00:00-08:00",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2024-03-10', 'America/Los_Angeles').format('YYYY-MM-DD')",
+          "dayjs": "2024-03-09",
+          "expected": "2024-03-10",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs('2024-03-10').tz('America/Los_Angeles', true).format()",
+          "dayjs": "2024-03-10T00:00:00-08:00",
+          "expected": "2024-03-10T00:00:00-08:00\nref: moment.tz('2024-03-10', 'America/Los_Angeles')",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2023-10-30', 'Europe/Paris').startOf('week').format()",
+          "dayjs": "2023-10-29T00:00:00+01:00",
+          "expected": "2023-10-29T00:00:00+02:00",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "2609-comment": {
+      "hostTz": "America/Los_Angeles",
+      "now": "2025-11-05T18:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs('2025-11-01T23:00').tz('America/New_York', true).utc().toJSON()",
+          "dayjs": "2025-11-02T04:00:00.000Z",
+          "expected": "2025-11-02T03:00:00.000Z\nref: moment.tz('2025-11-01 23:00', 'America/New_York')",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs('2025-11-01T23:00').tz('America/New_York', true).format()",
+          "dayjs": "2025-11-01T23:00:00-05:00",
+          "expected": "2025-11-01T23:00:00-04:00\nref: moment.tz('2025-11-01 23:00', 'America/New_York')",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "mui": {
+      "hostTz": "Europe/Paris",
+      "now": "2023-10-20T10:00:00Z",
+      "rows": [
+        {
+          "code": "// how a calendar walks the days: .add(1, 'day') repeatedly\nlet d = dayjs.tz('2023-10-27', 'Europe/London')\nfor (i of 0..4) { out.push(d.format('ddd D HH:mm Z')); d = d.add(1, 'day') }",
+          "dayjs": "Fri 27 00:00 +01:00\nSat 28 00:00 +01:00\nSun 29 00:00 +01:00\nMon 30 00:00 +01:00\nTue 31 00:00 +01:00",
+          "expected": "Fri 27 00:00 +01:00\nSat 28 00:00 +01:00\nSun 29 00:00 +01:00\nMon 30 00:00 +00:00\nTue 31 00:00 +00:00",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2023-10-28', 'Europe/London').add(2, 'day').format()",
+          "dayjs": "2023-10-30T00:00:00+01:00",
+          "expected": "2023-10-30T00:00:00Z",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2023-10-30', 'Europe/London').startOf('week').format()",
+          "dayjs": "2023-10-29T00:00:00+01:00",
+          "expected": "2023-10-29T00:00:00+01:00",
+          "status": "PASS"
+        }
+      ],
+      "calendar": "FAIL — 32 day cells, duplicated: 29"
+    },
+    "overlap-summer": {
+      "hostTz": "Europe/Paris",
+      "now": "2026-07-01T12:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2012-11-04 01:30', 'America/New_York').format()",
+          "dayjs": "2012-11-04T01:30:00-04:00",
+          "expected": "2012-11-04T01:30:00-04:00",
+          "status": "PASS"
+        }
+      ]
+    },
+    "overlap-winter": {
+      "hostTz": "Europe/Paris",
+      "now": "2026-11-13T12:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2012-11-04 01:30', 'America/New_York').format()",
+          "dayjs": "2012-11-04T01:30:00-05:00",
+          "expected": "2012-11-04T01:30:00-04:00",
+          "status": "FAIL"
+        }
+      ]
+    }
+  },
+  "before": {
+    "1271": {
+      "hostTz": "America/Santiago",
+      "now": "2020-12-20T15:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2020-10-24', 'Europe/London').add(2, 'day').toISOString()",
+          "dayjs": "2020-10-25T23:00:00.000Z",
+          "expected": "2020-10-26T00:00:00.000Z",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2020-10-24', 'Europe/London').add(2, 'day').format()",
+          "dayjs": "2020-10-26T00:00:00+01:00",
+          "expected": "2020-10-26T00:00:00Z",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2020-10-25', 'Europe/Berlin').add(1, 'day')\n  .diff(dayjs.tz('2020-10-26', 'Europe/Berlin'))",
+          "dayjs": "-3600000",
+          "expected": "0",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2021-03-12 19:00', 'America/New_York').add(1, 'month').format()",
+          "dayjs": "2021-04-12T19:00:00-05:00",
+          "expected": "2021-04-12T19:00:00-04:00",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2020-10-25 00:00', 'Europe/London').add(3, 'hour').format()",
+          "dayjs": "2020-10-25T03:00:00+01:00",
+          "expected": "2020-10-25T02:00:00Z",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "2609": {
+      "hostTz": "America/New_York",
+      "now": "2024-03-15T15:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2024-03-10', 'America/Los_Angeles').format()",
+          "dayjs": "2024-03-09T23:00:00-08:00",
+          "expected": "2024-03-10T00:00:00-08:00",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2024-03-10', 'America/Los_Angeles').format('YYYY-MM-DD')",
+          "dayjs": "2024-03-09",
+          "expected": "2024-03-10",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs('2024-03-10').tz('America/Los_Angeles', true).format()",
+          "dayjs": "2024-03-10T00:00:00-08:00",
+          "expected": "2024-03-10T00:00:00-08:00\nref: moment.tz('2024-03-10', 'America/Los_Angeles')",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2023-10-30', 'Europe/Paris').startOf('week').format()",
+          "dayjs": "2023-10-29T00:00:00+01:00",
+          "expected": "2023-10-29T00:00:00+02:00",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "2609-comment": {
+      "hostTz": "America/Los_Angeles",
+      "now": "2025-11-05T18:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs('2025-11-01T23:00').tz('America/New_York', true).utc().toJSON()",
+          "dayjs": "2025-11-02T04:00:00.000Z",
+          "expected": "2025-11-02T03:00:00.000Z\nref: moment.tz('2025-11-01 23:00', 'America/New_York')",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs('2025-11-01T23:00').tz('America/New_York', true).format()",
+          "dayjs": "2025-11-01T23:00:00-05:00",
+          "expected": "2025-11-01T23:00:00-04:00\nref: moment.tz('2025-11-01 23:00', 'America/New_York')",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "mui": {
+      "hostTz": "Europe/Paris",
+      "now": "2023-10-20T10:00:00Z",
+      "rows": [
+        {
+          "code": "// how a calendar walks the days: .add(1, 'day') repeatedly\nlet d = dayjs.tz('2023-10-27', 'Europe/London')\nfor (i of 0..4) { out.push(d.format('ddd D HH:mm Z')); d = d.add(1, 'day') }",
+          "dayjs": "Fri 27 00:00 +01:00\nSat 28 00:00 +01:00\nSun 29 00:00 +01:00\nMon 30 00:00 +01:00\nTue 31 00:00 +01:00",
+          "expected": "Fri 27 00:00 +01:00\nSat 28 00:00 +01:00\nSun 29 00:00 +01:00\nMon 30 00:00 +00:00\nTue 31 00:00 +00:00",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2023-10-28', 'Europe/London').add(2, 'day').format()",
+          "dayjs": "2023-10-30T00:00:00+01:00",
+          "expected": "2023-10-30T00:00:00Z",
+          "status": "FAIL"
+        },
+        {
+          "code": "dayjs.tz('2023-10-30', 'Europe/London').startOf('week').format()",
+          "dayjs": "2023-10-29T00:00:00+01:00",
+          "expected": "2023-10-29T00:00:00+01:00",
+          "status": "PASS"
+        }
+      ],
+      "calendar": "PASS — 31 day cells, no duplicates"
+    },
+    "overlap-summer": {
+      "hostTz": "Europe/Paris",
+      "now": "2026-07-01T12:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2012-11-04 01:30', 'America/New_York').format()",
+          "dayjs": "2012-11-04T01:30:00-04:00",
+          "expected": "2012-11-04T01:30:00-04:00",
+          "status": "PASS"
+        }
+      ]
+    },
+    "overlap-winter": {
+      "hostTz": "Europe/Paris",
+      "now": "2026-11-13T12:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2012-11-04 01:30', 'America/New_York').format()",
+          "dayjs": "2012-11-04T01:30:00-05:00",
+          "expected": "2012-11-04T01:30:00-04:00",
+          "status": "FAIL"
+        }
+      ]
+    }
+  },
+  "after": {
+    "1271": {
+      "hostTz": "America/Santiago",
+      "now": "2020-12-20T15:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2020-10-24', 'Europe/London').add(2, 'day').toISOString()",
+          "dayjs": "2020-10-26T00:00:00.000Z",
+          "expected": "2020-10-26T00:00:00.000Z",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2020-10-24', 'Europe/London').add(2, 'day').format()",
+          "dayjs": "2020-10-26T00:00:00Z",
+          "expected": "2020-10-26T00:00:00Z",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2020-10-25', 'Europe/Berlin').add(1, 'day')\n  .diff(dayjs.tz('2020-10-26', 'Europe/Berlin'))",
+          "dayjs": "0",
+          "expected": "0",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2021-03-12 19:00', 'America/New_York').add(1, 'month').format()",
+          "dayjs": "2021-04-12T19:00:00-04:00",
+          "expected": "2021-04-12T19:00:00-04:00",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2020-10-25 00:00', 'Europe/London').add(3, 'hour').format()",
+          "dayjs": "2020-10-25T02:00:00Z",
+          "expected": "2020-10-25T02:00:00Z",
+          "status": "PASS"
+        }
+      ]
+    },
+    "2609": {
+      "hostTz": "America/New_York",
+      "now": "2024-03-15T15:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2024-03-10', 'America/Los_Angeles').format()",
+          "dayjs": "2024-03-10T00:00:00-08:00",
+          "expected": "2024-03-10T00:00:00-08:00",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2024-03-10', 'America/Los_Angeles').format('YYYY-MM-DD')",
+          "dayjs": "2024-03-10",
+          "expected": "2024-03-10",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs('2024-03-10').tz('America/Los_Angeles', true).format()",
+          "dayjs": "2024-03-10T00:00:00-08:00",
+          "expected": "2024-03-10T00:00:00-08:00\nref: moment.tz('2024-03-10', 'America/Los_Angeles')",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2023-10-30', 'Europe/Paris').startOf('week').format()",
+          "dayjs": "2023-10-29T00:00:00+02:00",
+          "expected": "2023-10-29T00:00:00+02:00",
+          "status": "PASS"
+        }
+      ]
+    },
+    "2609-comment": {
+      "hostTz": "America/Los_Angeles",
+      "now": "2025-11-05T18:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs('2025-11-01T23:00').tz('America/New_York', true).utc().toJSON()",
+          "dayjs": "2025-11-02T03:00:00.000Z",
+          "expected": "2025-11-02T03:00:00.000Z\nref: moment.tz('2025-11-01 23:00', 'America/New_York')",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs('2025-11-01T23:00').tz('America/New_York', true).format()",
+          "dayjs": "2025-11-01T23:00:00-04:00",
+          "expected": "2025-11-01T23:00:00-04:00\nref: moment.tz('2025-11-01 23:00', 'America/New_York')",
+          "status": "PASS"
+        }
+      ]
+    },
+    "mui": {
+      "hostTz": "Europe/Paris",
+      "now": "2023-10-20T10:00:00Z",
+      "rows": [
+        {
+          "code": "// how a calendar walks the days: .add(1, 'day') repeatedly\nlet d = dayjs.tz('2023-10-27', 'Europe/London')\nfor (i of 0..4) { out.push(d.format('ddd D HH:mm Z')); d = d.add(1, 'day') }",
+          "dayjs": "Fri 27 00:00 +01:00\nSat 28 00:00 +01:00\nSun 29 00:00 +01:00\nMon 30 00:00 +00:00\nTue 31 00:00 +00:00",
+          "expected": "Fri 27 00:00 +01:00\nSat 28 00:00 +01:00\nSun 29 00:00 +01:00\nMon 30 00:00 +00:00\nTue 31 00:00 +00:00",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2023-10-28', 'Europe/London').add(2, 'day').format()",
+          "dayjs": "2023-10-30T00:00:00Z",
+          "expected": "2023-10-30T00:00:00Z",
+          "status": "PASS"
+        },
+        {
+          "code": "dayjs.tz('2023-10-30', 'Europe/London').startOf('week').format()",
+          "dayjs": "2023-10-29T00:00:00+01:00",
+          "expected": "2023-10-29T00:00:00+01:00",
+          "status": "PASS"
+        }
+      ],
+      "calendar": "PASS — 31 day cells, no duplicates"
+    },
+    "overlap-summer": {
+      "hostTz": "Europe/Paris",
+      "now": "2026-07-01T12:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2012-11-04 01:30', 'America/New_York').format()",
+          "dayjs": "2012-11-04T01:30:00-04:00",
+          "expected": "2012-11-04T01:30:00-04:00",
+          "status": "PASS"
+        }
+      ]
+    },
+    "overlap-winter": {
+      "hostTz": "Europe/Paris",
+      "now": "2026-11-13T12:00:00Z",
+      "rows": [
+        {
+          "code": "dayjs.tz('2012-11-04 01:30', 'America/New_York').format()",
+          "dayjs": "2012-11-04T01:30:00-04:00",
+          "expected": "2012-11-04T01:30:00-04:00",
+          "status": "PASS"
+        }
+      ]
+    }
+  }
+}

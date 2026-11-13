@@ -1,0 +1,37 @@
+:root { --ok: #127a3a; --ok-bg: #e8f6ee; --bad: #b42318; --bad-bg: #fdecea; --ink: #1d2433; --muted: #5b6475; --line: #d9dee7; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f6f7f9; color: var(--ink); font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+section { max-width: 1240px; margin: 0 auto; padding: 20px 24px 28px; }
+header { display: flex; align-items: center; gap: 12px; }
+h1 { font-size: 19px; margin: 0; }
+h1 a { color: inherit; }
+.build { font-weight: 700; padding: 4px 10px; border-radius: 4px; color: #fff; white-space: nowrap; }
+.build.before, .build.reported { background: var(--bad); }
+.build.after { background: var(--ok); }
+.env { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 14px 0; }
+.env div { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+.env dt { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.env dd { margin: 2px 0 0; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+#run { font: inherit; font-weight: 600; padding: 7px 14px; border-radius: 6px; border: 1px solid #3b5bdb; background: #3b5bdb; color: #fff; cursor: pointer; margin-bottom: 10px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); background: #fafbfc; }
+pre { margin: 0; font: 12.5px/1.45 ui-monospace, Menlo, monospace; white-space: pre-wrap; }
+tr.pass td:nth-child(2) { background: var(--ok-bg); }
+tr.fail td:nth-child(2) { background: var(--bad-bg); }
+.status { font-weight: 700; width: 60px; }
+tr.pass .status { color: var(--ok); }
+tr.fail .status { color: var(--bad); }
+.calendar-row { display: flex; gap: 16px; margin-top: 8px; align-items: flex-start; }
+.calendar { background: #fff; border: 2px solid var(--line); border-radius: 8px; padding: 4px 8px; }
+.calendar.bad { border-color: var(--bad); }
+.calendar.good { border-color: var(--ok); }
+.calendar .dupe { outline: 3px solid var(--bad); background: var(--bad-bg) !important; }
+.verdict { margin: 0 8px 8px; font-weight: 700; }
+.calendar.bad .verdict { color: var(--bad); }
+.calendar.good .verdict { color: var(--ok); }
+.calendar h3 { font-size: 13px; margin: 8px 8px 0; }
+.calendar .weeks { margin: 0 8px 8px; padding: 6px 8px; background: #fafbfc; border-radius: 4px; }
+.calendar-row { justify-content: center; }
+.hint { color: var(--muted); font-size: 12px; margin: 10px 0 0; }
+.ref { margin-top: 4px; color: var(--muted); font: 11px ui-monospace, Menlo, monospace; }
